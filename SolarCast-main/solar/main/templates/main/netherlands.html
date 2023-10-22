@@ -1,0 +1,190 @@
+{% extends 'main/index.html' %}
+{% block title %} Netherlands {% endblock %} 
+{% block content %}
+<h2>The Netherlands: Strong Commitment to Renewable Energy</h2>
+<p>The Netherlands today has an average of two solar panels per inhabitant - and installed capacity of more
+than 1 kilowatt (KW) per person - making it Europe's per-capita solar powerhouse, according to industry association
+Solar Power. In recent years, the Netherlands has enshrined climate targets like its renewable energy goal into law,
+vowed to limit onshore gas and oil drilling, and boosted green spending generally.The nation's 2022 renewable energy budget 
+was 13 billion euros.Last year, the Netherlands generated 14 per cent of its electricity from solar 
+farms - up from 1 per cent in 2015 - overtaking coal-fired power generation for the first time.</p>
+<div class="my-plot">
+    {{ plot_div|safe }}
+</div>
+<div class="my-plot">
+    {{ naive|safe }}
+</div>
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Model</th>
+        <th scope="col">MSE</th>
+        <th scope="col">MAE</th>
+        <th scope="col">R2</th>
+        <th scope="col">RMSE</th>
+        <th scope="col">MAPE</th>
+        <th scope="col">SMAPE</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-active">
+        <th scope="row">Naive</th>
+        <td>{{ naive_metrics.MSE }}</td>
+        <td>{{ naive_metrics.MAE }}</td>
+        <td>{{ naive_metrics.R2 }}</td>
+        <td>{{ naive_metrics.RMSE }}</td>
+        <td>{{ naive_metrics.MAPE }}</td>
+        <td>{{ naive_metrics.SMAPE }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+<div class="my-plot">
+    {{ AR|safe }}
+</div>
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Model</th>
+        <th scope="col">MSE</th>
+        <th scope="col">MAE</th>
+        <th scope="col">R2</th>
+        <th scope="col">RMSE</th>
+        <th scope="col">MAPE</th>
+        <th scope="col">SMAPE</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-active">
+        <th scope="row">Auto Regression</th>
+        <td>{{ ar_metrics.MSE }}</td>
+        <td>{{ ar_metrics.MAE }}</td>
+        <td>{{ ar_metrics.R2 }}</td>
+        <td>{{ ar_metrics.RMSE }}</td>
+        <td>{{ ar_metrics.MAPE }}</td>
+        <td>{{ ar_metrics.SMAPE }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+<div class="my-plot">
+    {{ ARIMA|safe }}
+</div>
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Model</th>
+        <th scope="col">MSE</th>
+        <th scope="col">MAE</th>
+        <th scope="col">R2</th>
+        <th scope="col">RMSE</th>
+        <th scope="col">MAPE</th>
+        <th scope="col">SMAPE</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-active">
+        <th scope="row">ARIMA</th>
+        <td>{{ arima_metrics.MSE }}</td>
+        <td>{{ arima_metrics.MAE }}</td>
+        <td>{{ arima_metrics.R2 }}</td>
+        <td>{{ arima_metrics.RMSE }}</td>
+        <td>{{ arima_metrics.MAPE }}</td>
+        <td>{{ arima_metrics.SMAPE }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+<div class="my-plot">
+    {{ SARIMA|safe }}
+</div>
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Model</th>
+        <th scope="col">MSE</th>
+        <th scope="col">MAE</th>
+        <th scope="col">R2</th>
+        <th scope="col">RMSE</th>
+        <th scope="col">MAPE</th>
+        <th scope="col">SMAPE</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-active">
+        <th scope="row">SARIMA</th>
+        <td>{{ sarima_metrics.MSE }}</td>
+        <td>{{ sarima_metrics.MAE }}</td>
+        <td>{{ sarima_metrics.R2 }}</td>
+        <td>{{ sarima_metrics.RMSE }}</td>
+        <td>{{ sarima_metrics.MAPE }}</td>
+        <td>{{ sarima_metrics.SMAPE }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+<br>
+<h2>Comparison</h2> 
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Metric Type</th>
+        <th scope="col">Naive</th>
+        <th scope="col">Auto Regression</th>
+        <th scope="col">ARIMA</th>
+        <th scope="col">SARIMA</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-light">
+        <th scope="row">MSE</th>
+        <td>{{ naive_metrics.MSE }}</td>
+        <td>{{ ar_metrics.MSE }}</td>
+        <td>{{ arima_metrics.MSE }}</td>
+        <td>{{ sarima_metrics.MSE }}</td>
+      </tr>
+      <tr class="table-light">
+        <th scope="row">MAE</th>
+        <td>{{ naive_metrics.MAE }}</td>
+        <td>{{ ar_metrics.MAE }}</td>
+        <td>{{ arima_metrics.MAE }}</td>
+        <td>{{ sarima_metrics.MAE }}</td>
+      </tr>
+      <tr class="table-light">
+        <th scope="row">R2</th>
+        <td>{{ naive_metrics.R2 }}</td>
+        <td>{{ ar_metrics.R2 }}</td>
+        <td>{{ arima_metrics.R2 }}</td>
+        <td>{{ sarima_metrics.R2 }}</td>
+      </tr>
+      <tr class="table-light">
+        <th scope="row">RMSE</th>
+        <td>{{ naive_metrics.RMSE }}</td>
+        <td>{{ ar_metrics.RMSE }}</td>
+        <td>{{ arima_metrics.RMSE }}</td>
+        <td>{{ sarima_metrics.RMSE }}</td>
+      </tr>
+      <tr class="table-light">
+        <th scope="row">MAPE</th>
+        <td>{{ naive_metrics.MAPE }}</td>
+        <td>{{ ar_metrics.MAPE }}</td>
+        <td>{{ arima_metrics.MAPE }}</td>
+        <td>{{ sarima_metrics.MAPE }}</td>
+      </tr>
+      <tr class="table-light">
+        <th scope="row">SMAPE</th>
+        <td>{{ naive_metrics.SMAPE }}</td>
+        <td>{{ ar_metrics.SMAPE }}</td>
+        <td>{{ arima_metrics.SMAPE }}</td>
+        <td>{{ sarima_metrics.SMAPE }}</td>
+      </tr>
+    </tbody>
+  </table>
+<br>
+{% endblock %}  
