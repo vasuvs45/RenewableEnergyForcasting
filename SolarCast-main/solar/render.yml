@@ -1,5 +1,5 @@
 web:
-  - command: gunicorn -w 4 -b 0.0.0.0:$PORT app:app
+  - command: gunicorn -w 4 -b 0.0.0.0:$PORT solar.wsgi:application
     healthCheck:
       path: /healthcheck
       intervalSeconds: 10
